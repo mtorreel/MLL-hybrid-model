@@ -1,0 +1,24 @@
+IO_left__  8		                # this always needs to be in the input file 
+reflect_L  5   0.5  0.0	         # reflection type5 
+soa_L____  2   17     0          # amplifier on the left (physical length = 140 micron)
+sa_______  3   7      2          # saturable absorber (physical length = 55 micron)
+soa_R____  2   79     1          # amplifier on the right (physical length = 660 micron)
+IO_right_  9		              # this always needs to be in the input file
+-1 -1 			# end of component list - start of connections list
+IO_left__  R0 reflect_L  L0    #
+reflect_L  R0 soa_L____  L0    #
+soa_L____  R0 sa_______  L0    #
+sa_______  R0 soa_R____  L0    #
+soa_R____  R0 IO_right_  L0    #
+xxx  -1  xxx -1 	# end of connections list - start of current source list
+0     0.016
+1     0.064
+2     0.0
+-1 -1
+
+From this point on the file can contain any text.
+
+
+1000 segments (20lambda) is 5 GHz FSR linear cavity = length is 8.12mm
+
+ 	

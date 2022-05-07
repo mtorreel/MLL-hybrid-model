@@ -1,0 +1,26 @@
+digraph G {
+	rankdir=LR;
+	graph [size="20,20"];
+	node [shape = record, color=blue, fontsize=14.0];
+
+	reflect_L [label="{<L0>L|<name>reflect_L|<R0>R}"];
+	soa_L____ [label="{<L0>L|<name>soa_L____|<R0>R}"];
+	source0 -> soa_L____:name [color=red];
+	source0 [shape=doublecircle, color=red];
+	sa_______ [label="{<L0>L|<name>sa_______|<R0>R}"];
+	source2 -> sa_______:name [color=red];
+	source2 [shape=doublecircle, color=red];
+	soa_R____ [label="{<L0>L|<name>soa_R____|<R0>R}"];
+	source1 -> soa_R____:name [color=red];
+	source1 [shape=doublecircle, color=red];
+	IO_left__ -> reflect_L:L0;
+	reflect_L:R0 -> soa_L____:L0;
+	soa_L____:R0 -> sa_______:L0;
+	sa_______:R0 -> soa_R____:L0;
+	soa_R____:R0 -> IO_right_;
+
+	IO_left__ [shape=Mdiamond];
+	IO_right_ [shape=Mdiamond];
+	overlap=false
+label="Circuit diagram of input file: device_input.txt"
+}

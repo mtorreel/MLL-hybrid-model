@@ -1,0 +1,62 @@
+1.694e-19	#	linear gain coefficient amplifier in m2
+1.694e-19
+0.053		#	standard confinement factor amp
+0.053		#	standard confinement factor abs
+0.75		#	standard confinement factor passive waveguide active (wga) (to be checked, see "derivation of equations v3 passivewg.xmcd")
+0.1		#	confinement factor 2 photon absorption amp
+0.1		#	confinement factor 2 photon absorption abs
+0.92		#	confinement factor 2 photon absorption passive waveguide active (wga) (to be checked, see "derivation of equations v3 passivewg.xmcd")
+0.08		#	confinement factor Kerr effect amp
+0.08		#	confinement factor Kerr effect abs
+0.6		#	confinement factor Kerr effect wga (this value is also maybe 0.84?)
+0.6577e24	#	transparency carrier density m-3 for the amplifier + N_min_amp
+0.6577e24	#	transparency carrier density m-3 for the absorber + N_min_abs
+0.0		#	minimum carrier density m-3 in the amplifier
+0.01e24		#	minimum cariier density m-3 in the absorber
+0.2		#	amplifier non-linear gain coefficient espilon 1
+0.2		#	absorber non-linear gain coefficient epsilon 1
+200.0		#	amplifier two photon gain/abs coefficient epsilon 2
+200.0
+3.7e-10		#	two photon absorption coefficient amp m/W amplifier beta 2
+3.7e-10
+4.62e-10	#	two photon absorption coefficient abs m/W passive wga
+598e-12		#	598e carrier lifetime in the amplifier (sec)
+1.5e-11
+200.0e-12	#	Carrier lifetime in a non contacted absorber isolation (sec)
+100.0e-12	#	Carrier lifetime in a passive waveguide (sec) (to be checked)
+2.62e-16
+5.269e-41
+5.07e-102
+2.620e-16	#	Bimolecular recombination coeff. m3 * sec-1 for the passive waveguide core
+5.269e-41	#	Auger recombination coef in m6 sec-1 for the passive waveguide core
+1.552e-6	#	wavelength in m
+0.0265e-6	#	active region hight Y direction (m) This value is consistent with the confinement, the ridge width and 500nm modeheight
+2.0e-6		#	active region width X direction (m)
+1345.0		#	passive other losses in the amplifier 1/m (combined with the carrier dep term this leads to a loss value for > 1kA/cm2)
+100		#	passive other losses in the absorber 1/m (default: 100.0)
+34.5		#	passive other losses in the passive waveguide 1/m (=1.5dB/cm)
+34.5		#	passive other losses in the passive waveguide active in m-1
+1.0		#	Mode surface area factor for the passive waveguide active (e.g. to accomodate IMOS)
+0.65		#	Current injection efficiency
+2.264e-21	#	free carrier absorption coeficient in the SOA active region in m-1 per carrier per m3
+-2.502e-46 	# free carrier absorption in the SOA active region quadratic term m-1 per carrier per m3 squared
+7.2e-21		#	3.0e-20 free carrier absorption coeficient in the passive waveguide active in m-1 per carrier per m3
+1.0e-5		# amplifier spontaneous emission coupling factor to laser mode beta
+3.7		#	Refractive index
+-3.5e-16	# non linear refractive index n2 in the SOA
+-1.5e-16	# 	non linear refractive index n2 in passive waveguide active (wga) (Dvorak et al value)
+4.0		#	carrier linewidth enhancement factor amp 
+4.0		#	carrier linewidth enhancement factor abs
+2.0		#	carrier T linewidth enhancement fact amp
+2.0		#	carrier T linewidth enhancement fact abs
+1.07e-26        # index change per free carrier per m3 in passive waveguide active (wga) (plasma effect and bandfilling, Weiming thesis )
+20
+4639	        #	Number of cycles in the simulation
+PHIsimout.txt  #	output file name
+-1	        #	if > 0 output data for video generated, store data for video every N time
+0	        #	store the data for video from this cycle number
+0               # if >=0 seed value for random number generation , -1 is random seed number for random number generation
+1e11
+1e11
+500.0
+500.0

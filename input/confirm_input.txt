@@ -1,0 +1,61 @@
+INPUT DATA laser
+-------------------------------------------
+Linear gain amplifier           : 1.694e-19 m2
+Linear gain absorber            : 1.694e-19 m2
+Std confinement factor amp      : 5.300e-02 
+Std confinement factor abs      : 5.300e-02 
+Std confinement factor wga      : 7.500e-01 
+Confinement factor amp TPA      : 1.000e-01 
+Confinement factor abs TPA      : 1.000e-01 
+Confinement factor wga TPA      : 9.200e-01 
+Confinement factor Kerr amp     : 8.000e-02 
+Confinement factor Kerr abs     : 8.000e-02 
+Confinement factor Kerr abs     : 6.000e-01 
+Transparency carrier d amp      : 6.577e+23 m3
+Transparency carrier d abs      : 6.577e+23 m3
+minimum carrier dens. in amp    : 0.000e+00 m3
+minimum carrier dens. in abs    : 1.000e+22 m3
+Amplifier non-linear gain coef  : 2.000e-01 
+Absorber non-linear gain coef   : 2.000e-01 
+Amplifier 2 photons gain/abs coef: 2.000e+02 
+Absorber 2 photons gain/abs coef : 2.000e+02 
+2 photon abs coef amp           : 3.700e-10 m W-1
+2 photon abs coef abs           : 3.700e-10 m W-1
+2 photon abs coef wga           : 4.620e-10 m W-1
+Carrier lifetime amplifier      : 5.980e-10 sec
+Carrier lifetime absorber       : 1.500e-11 sec
+Carrier lifetime noncontacted ABS: 2.000e-10 sec
+Carrier lifetime passive waveguid: 1.000e-10 sec
+Bimol. recombination            : 2.620e-16 m-6
+Auger recombination             : 5.269e-41 m-9
+Carrier drift term              : 5.070e-102 m-16.5
+Bimol. recombination wg active  : 2.620e-16 m-6
+Auger recombination wg active   : 5.269e-41 m-9
+Amplified wavelength            : 1.552e-06 m
+Active region height            : 2.650e-08 m
+Active region width             : 2.000e-06 m
+Other loss amplifier            : 1.345e+03 m-1
+Other loss absorber             : 1.000e+02 m-1
+Other loss passive wg           : 3.450e+01 m-1
+Other loss passive wgactive     : 3.450e+01 m-1
+Mode surface factor wgactive    : 1.000e+00
+Current injection efficiency    : 6.500e-01 
+Free carrier abs SOA            : 2.264e-21 m-1 per carrier per m3
+Free carr abs SOA quadratic term:-2.502e-46 m-1 per carrier2 per m6
+Free carrier abs WGA            : 7.200e-21 m-1 per carrier per m3
+Spont. emmission fr.            : 1.000e-05 sec-1
+Refractive index                : 3.700e+00
+non linear refractive index SOA :-3.500e-16 
+non linear refractive index wga :-1.500e-16 
+carrier LW enhancement fact amp : 4.000e+00 
+carrier LW enhancement fact abs : 4.000e+00 
+carrier T LW enhancement fact amp : 2.000e+00 
+carrier T LW enhancement fact abs : 2.000e+00 
+index change per carrier in wga   : 1.070e-26 
+Optical pathlength of segment in wl:20 
+Time for one segment            : 1.035e-13 sec
+Nr of calculation cycles        :  4639 rounds
+Output written to:              : PHIsimout.txt
+Data for video stored every     : -1 cycles
+Data for video stored from cycle: 0
+Seed number for RNG (0=random)  : 0
