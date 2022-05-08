@@ -11,8 +11,8 @@ soa_L____  R0 sa_______  L0    #
 sa_______  R0 soa_R____  L0    #
 soa_R____  R0 IO_right_  L0    #
 xxx  -1  xxx -1 	# end of connections list - start of current source list
-0     0.016
-1     0.064
+0     0.014
+1     0.056
 2     0.0
 -1 -1
 
