@@ -20,7 +20,7 @@ f1, ax1 = plt.subplots(1, 1)
 # Loop over different positions in the laser
 for i in range(3):
     # Load the data
-    dataA = np.loadtxt('output/output_70mA_withSSF_full.txt', dtype=complex, usecols=i)
+    dataA = np.loadtxt('output/output_redo_full.txt', dtype=complex, usecols=i)
 
     # Plot the pulse shape
     [valid_flag, t_axis, trace_selection, trace_selection_fit, pulsewidth, pulseenergy] = getpulse(timeStep, dataA, 1e9)

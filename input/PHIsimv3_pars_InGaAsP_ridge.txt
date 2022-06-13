@@ -1,4 +1,4 @@
-1.694e-19	#	linear gain coefficient amplifier in m2
+1.694e-19
 1.694e-19
 0.053		#	standard confinement factor amp
 0.053		#	standard confinement factor abs
@@ -13,11 +13,11 @@
 0.6577e24	#	transparency carrier density m-3 for the absorber + N_min_abs
 0.0		#	minimum carrier density m-3 in the amplifier
 0.01e24		#	minimum cariier density m-3 in the absorber
-0.2		#	amplifier non-linear gain coefficient espilon 1
+0.2
 0.2		#	absorber non-linear gain coefficient epsilon 1
-200.0		#	amplifier two photon gain/abs coefficient epsilon 2
 200.0
-3.7e-10		#	two photon absorption coefficient amp m/W amplifier beta 2
+200.0
+3.7e-10
 3.7e-10
 4.62e-10	#	two photon absorption coefficient abs m/W passive wga
 598e-12		#	598e carrier lifetime in the amplifier (sec)
@@ -38,10 +38,10 @@
 34.5		#	passive other losses in the passive waveguide active in m-1
 1.0		#	Mode surface area factor for the passive waveguide active (e.g. to accomodate IMOS)
 0.65		#	Current injection efficiency
-2.264e-21	#	free carrier absorption coeficient in the SOA active region in m-1 per carrier per m3
+2.264e-21
 -2.502e-46 	# free carrier absorption in the SOA active region quadratic term m-1 per carrier per m3 squared
 7.2e-21		#	3.0e-20 free carrier absorption coeficient in the passive waveguide active in m-1 per carrier per m3
-1.0e-5		# amplifier spontaneous emission coupling factor to laser mode beta
+1e-05
 3.7		#	Refractive index
 -3.5e-16	# non linear refractive index n2 in the SOA
 -1.5e-16	# 	non linear refractive index n2 in passive waveguide active (wga) (Dvorak et al value)
@@ -56,7 +56,7 @@ PHIsimout.txt  #	output file name
 -1	        #	if > 0 output data for video generated, store data for video every N time
 0	        #	store the data for video from this cycle number
 0               # if >=0 seed value for random number generation , -1 is random seed number for random number generation
-1e12
-1e12
-950.0
-950.0
+1000000000000.0
+1000000000000.0
+950
+950

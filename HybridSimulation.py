@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 from time import perf_counter
 
 class HybridSimulation:
-    def __init__(self, nrOfSpaceSteps, folderDirectory, cavityLength, simulationTime, rightReflectivity, current=0, pulse_height=0, withSSF=True, videoSamplingRate=-1, isWithMemory=True, filter=[], is_fullOutput=False):
+    def __init__(self, nrOfSpaceSteps, folderDirectory, cavityLength, simulationTime, rightReflectivity, current=0, pulse_height=0, withSSF=True, videoSamplingRate=-1, isWithMemory=True, filter=[], is_fullOutput=False, leftSOA_length = 0):
         # Initialize PHI_simulation object
-        self.phi = PHI_simulation(nrOfSpaceSteps=nrOfSpaceSteps, videoSamplingRate=videoSamplingRate, folderDirectory=folderDirectory, current=current, isWithMemory=isWithMemory)
+        self.phi = PHI_simulation(nrOfSpaceSteps=nrOfSpaceSteps, videoSamplingRate=videoSamplingRate, folderDirectory=folderDirectory, current=current, isWithMemory=isWithMemory, leftSOA_length=leftSOA_length)
 
         # Delay of other components
         cum_delay_other_components = 2 * self.phi.nrOfSpaceSteps * self.phi.timeStep
@@ -61,14 +61,17 @@ class HybridSimulation:
         self.phi.run()
 
         # Get the output
-        PHI_output = self.phi.get_outputLR()
+        outputLR = self.phi.get_outputLR()
+        outputRL = self.phi.get_outputRL()
+
+        PHI_output = outputLR
 
         # Filter the output signal
         # PHI_output = self.filter.apply(PHI_output)
-        self.outputA[self.simulationCounter * self.phi.nrOfCycles:(self.simulationCounter + 1) * self.phi.nrOfCycles] = PHI_output
+        self.outputA[self.simulationCounter * self.phi.nrOfCycles:(self.simulationCounter + 1) * self.phi.nrOfCycles] = outputRL
         if self.is_fullOutput == True:
             self.outputM[self.simulationCounter * self.phi.nrOfCycles:(self.simulationCounter + 1) * self.phi.nrOfCycles, 0] = PHI_output
-            self.outputM[self.simulationCounter * self.phi.nrOfCycles:(self.simulationCounter + 1) * self.phi.nrOfCycles, 2] = self.phi.get_outputRL()
+            self.outputM[self.simulationCounter * self.phi.nrOfCycles:(self.simulationCounter + 1) * self.phi.nrOfCycles, 2] = outputRL
 
         self.toc = perf_counter()
         if self.simulationCounter > 1:
@@ -78,7 +81,7 @@ class HybridSimulation:
         # Use this output as input for SSF
         self.tic = perf_counter()
         if self.withSSF == True:
-            self.ssf.performSSF(PHI_output, self.ssf.Queue[0] * np.sqrt(self.r2))
+            self.ssf.performSSF(PHI_output, (self.ssf.Queue[0]) * np.sqrt(self.r2))
         else:
             self.ssf.performLossAndDelay(PHI_output, self.ssf.Queue[0] * np.sqrt(self.r2))
         
@@ -87,10 +90,6 @@ class HybridSimulation:
         
         self.toc = perf_counter()
         self.SSF_timeA.append(self.toc - self.tic)
-
-        # plt.plot(self.ssf.Reservoir[0])
-        # plt.plot(self.ssf.Reservoir[1])
-        # plt.show()
 
         self.tic = perf_counter()
 

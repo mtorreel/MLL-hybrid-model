@@ -19,14 +19,21 @@ def copyAndRemoveFile(originDirectory, destinationDirectory, fileName):
 # Class for PHIsim simulations
 class PHI_simulation():
     # Dictionary to look up all parameters in par file
+    # Dictionary to look up all parameters in par file
     parameter_to_NdxD = {
+        'gainCoeff_SOA': 0,
         'gainCoeff_SA': 1,
+        'epsilon1_SOA': 15,
+        'epsilonTPA_SOA': 17,
         'epsilonTPA_SA': 18,
+        'TPA_SOA': 19,
         'TPA_SA': 20,
         'lifeTime_SA': 23,
         'bimol_SA': 26,
         'Auger_SA': 27,
         'drift_SA': 28,
+        'alphaFCA_SOA': 40,
+        'betaASE_SOA': 43,
         'nrOfWL': 52,
         'FWHM_SOA': 58,
         'FWHM_SA': 59,
@@ -36,21 +43,27 @@ class PHI_simulation():
 
     # dictionary with the default values for parameters
     parameter_defaultD = {
+        'gainCoeff_SOA': 1.694e-19,
         'gainCoeff_SA': 1.694e-19,
+        'epsilon1_SOA': 0.2,
+        'epsilonTPA_SOA': 200.0,
         'epsilonTPA_SA': 200.0,
+        'TPA_SOA': 3.7e-10,
         'TPA_SA': 3.7e-10,
         'lifeTime_SA': 15e-12,
         'bimol_SA': 2.620e-16,
         'Auger_SA': 5.269e-41,
         'drift_SA': 5.07e-102,
+        'alphaFCA_SOA': 2.264e-21,
+        'betaASE_SOA': 1.0e-5,
         'nrOfWL': 20,
         'FWHM_SOA': 1e12,
         'FWHM_SA': 1e12,
-        'gbar_SOA': 1e3,
-        'gbar_SA': 1e3
+        'gbar_SOA': 950,
+        'gbar_SA': 950
     }
 
-    def __init__(self, nrOfSpaceSteps, nrOfCycles = 0, videoSamplingRate = -1, folderDirectory = 'C:/Users/Jany/thesis_code/hybridPHISim', isWithMemory=True, current=0, isInitialized=False):
+    def __init__(self, nrOfSpaceSteps, nrOfCycles = 0, videoSamplingRate = -1, folderDirectory = 'C:/Users/Jany/thesis_code/hybridPHISim', isWithMemory=True, current=0, isInitialized=False, leftSOA_length = 0):
         
         # Directories
         self.folderDirectory = folderDirectory        
@@ -83,6 +96,15 @@ class PHI_simulation():
         if current != 0:
             self.current = current
             self.set_current()
+
+        # If the length of the left SOA element is specified: displace the SA + change current
+        if leftSOA_length != 0:
+            # Make new device input files ...
+            self.leftSOA_length = leftSOA_length
+            self.displace_SA()
+        else:
+            # ... otherwise, reset to default configuration
+            self.reset_deviceInput()
 
         # Generate the input files with initialization - does not need to be done when already initialized
         if isInitialized == False:
@@ -252,6 +274,68 @@ class PHI_simulation():
         fout.write(replacement)
         fout.close()
     
+    def displace_SA(self):
+        '''Change the device input file for the displaced SA experiments. Note that the current provided to the SOA segments has to be changed accordingly.'''
+ 
+        # Go to correct working directory
+        os.chdir(self.input_work_dir)
+
+        # Open the input file
+        file = open("device_input.txt", "r")
+        replacement = ""
+        
+        for i, line in enumerate(file):
+            if i == 2:
+                replacement = replacement + 'soa_L____  2   ' + str(self.leftSOA_length) + '     0          # amplifier on the left\n'
+            elif i == 3:
+                replacement = replacement + 'sa_______  3   7      2          # saturable absorber\n'
+            elif i == 4:
+                replacement = replacement + 'soa_R____  2   ' + str(int(96 - self.leftSOA_length)) + '     1          # amplifier on right\n'
+            elif i == 13:
+                replacement = replacement + '0     ' + str(np.round(self.current * self.leftSOA_length / 96, decimals=3)) + '\n'
+            elif i == 14:
+                replacement = replacement + '1     ' + str(np.round(self.current * (1 - self.leftSOA_length / 96), decimals=3)) + '\n'
+            else:
+                replacement = replacement + line
+
+        file.close()
+
+        # Opening the input file in write mode
+        fout = open("device_input.txt", "w")
+        fout.write(replacement)
+        fout.close()
+           
+    def reset_deviceInput(self):
+        '''Reset the device input file back to default configuration. Note that the current provided to the SOA segments has to be changed accordingly.'''
+ 
+        # Go to correct working directory
+        os.chdir(self.input_work_dir)
+
+        # Open the input file
+        file = open("device_input.txt", "r")
+        replacement = ""
+        
+        for i, line in enumerate(file):
+            if i == 2:
+                replacement = replacement + 'soa_L____  2   17     0          # amplifier on the left\n'
+            elif i == 3:
+                replacement = replacement + 'sa_______  3   7      2          # saturable absorber\n'
+            elif i == 4:
+                replacement = replacement + 'soa_R____  2   79     1          # amplifier on right\n'
+            elif i == 13:
+                replacement = replacement + '0     ' + str(np.round(self.current * 0.2, decimals=3)) + '\n'
+            elif i == 14:
+                replacement = replacement + '1     ' + str(np.round(self.current * 0.8, decimals=3)) + '\n'
+            else:
+                replacement = replacement + line
+
+        file.close()
+
+        # Opening the input file in write mode
+        fout = open("device_input.txt", "w")
+        fout.write(replacement)
+        fout.close()
+
     def generateInputFiles(self):
         '''Generates the input files.
         '''

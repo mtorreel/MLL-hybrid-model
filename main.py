@@ -23,10 +23,13 @@ is_fullOutput = True    # boolean to switch for recording at multiple locations 
 
 print('Simulation started.')
 
-outputName = 'output_70mA_withSSF'
+outputName = 'output_redo'
 
 # Initialize the simulation
 sim = HybridSimulation(nrOfSpaceSteps, folderName, passiveLength, simulationTime, rightReflectivity, current=current, withSSF=withSSF, videoSamplingRate=videoSamplingRate, pulse_height=pulseHeight, isWithMemory=isWithMemory, filter=filter, is_fullOutput=is_fullOutput)
+
+sim.phi.reset_otherParameters()
+sim.phi.generateInputFiles()
 
 # Run the hybrid simulation
 sim.run()
